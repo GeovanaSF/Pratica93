@@ -26,7 +26,7 @@ public class Pratica93 {
             if (!cmd.trim().isEmpty() && !cmd.equals("fim")) {
                 ExecCmd comando = new ExecCmd(cmd);
                 comando.executa();
-                //comandos.add(comando);
+                comandos.add(comando);
             }else if(confirmaSaida()){
                 for(ExecCmd c : comandos){
                     c.cancela();
