@@ -16,7 +16,7 @@ public class Pratica93 {
     private static final Scanner scanner = new Scanner(System.in);
     private final List<ExecCmd> comandos = new ArrayList<>();
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String cmd;
         boolean fim = false;
         
@@ -27,23 +27,15 @@ public class Pratica93 {
                 ExecCmd comando = new ExecCmd(cmd);
                 comando.executa();
                 comandos.add(comando);
-            }else{
-                int qntd = 0;
-                for(ExecCmd c: comandos){
-                    qntd += c.terminado() ? 0 : 1;
-                }
-                System.out.println("Processo "+qntd+" em execução deseja terminar? (s/n)");
-                Scanner s = new Scanner(System.in);
-                String ss = s.next();
-                if(ss.compareTo("s")!=0){
-                    for(ExecCmd c : comandos){
-                        c.cancela();
-                    }
+            }else if(confirmaSaida()){
+                for(ExecCmd c : comandos){
+                    c.cancela();
                 }
             }
         }while(!fim);
         
-        
+    }
+    
     private static boolean confirmaSaida() throws IOException {
         int qntd = 0;
             for(ExecCmd c: comandos){
@@ -59,5 +51,5 @@ public class Pratica93 {
         return "S".equals(resp);
     }
         
-    }
+    
 }
