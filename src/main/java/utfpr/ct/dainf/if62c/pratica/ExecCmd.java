@@ -7,7 +7,6 @@
 package utfpr.ct.dainf.if62c.pratica;
 
 import java.io.IOException;
-import static java.lang.Runtime.getRuntime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,8 +15,9 @@ import java.util.logging.Logger;
  * @author Geovana
  */
 public class ExecCmd extends Thread{
-    protected Process proc;
-    String cmd;
+    private Process proc;
+    private final String cmd;
+    private boolean terminado;
     
     public ExecCmd(String cmd){
         this.cmd = cmd;
@@ -26,20 +26,36 @@ public class ExecCmd extends Thread{
     @Override
     public void run(){
         try {
-            Runtime rt = getRuntime();
-            proc = rt.exec(cmd);
-            //proc.waitFor();
-        } /*catch (InterruptedException ex) {
+            proc = Runtime.getRuntime().exec(cmd);
+            proc.waitFor();
+        } catch (IOException ex) {
             Logger.getLogger(ExecCmd.class.getName()).log(Level.SEVERE, null, ex);
-        } */catch (IOException ex) {
+        } catch (InterruptedException ex) {
             Logger.getLogger(ExecCmd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        terminado = true;
+    }
+    
+    public void executa() {
+        try {
+            CapturaSaida captura = new CapturaSaida(proc.getInputStream(),System.out);
+            proc = Runtime.getRuntime().exec(cmd);
+            captura.start();
+        } catch (IOException | IllegalArgumentException ex) {
+            System.out.printf("Comando '%s' não pode ser executado: %s%n",
+                    cmd, ex.getLocalizedMessage());
+            terminado = true;
         }
     }
     
     public void cancela(){
-        proc.destroy();
+        try {
+            proc.destroy();
+        } finally {
+            terminado = true;
+        }
     }
     public boolean terminado(){
-        return proc.isAlive();
+        return terminado;
     }
 }

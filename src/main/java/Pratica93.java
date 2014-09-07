@@ -1,5 +1,7 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import utfpr.ct.dainf.if62c.pratica.ExecCmd;
 
@@ -11,24 +13,25 @@ import utfpr.ct.dainf.if62c.pratica.ExecCmd;
  * @author Geovana Franco Santos<geovaa.franco01@gmail.com>
  */
 public class Pratica93 {
+    private static final Scanner scanner = new Scanner(System.in);
+    private final List<ExecCmd> comandos = new ArrayList<>();
+    
     public static void main(String[] args) {
-        String cmd = "";
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<ExecCmd> comandos = new ArrayList<>();
-        while(cmd.compareTo("fim")!=0){
+        String cmd;
+        boolean fim = false;
+        
+        do{
             System.out.println("Entre comando: ");
             cmd = scanner.next();
-            //ExecCmd ex = new ExecCmd(cmd);
-            if(cmd.compareTo("fim")!=0){
-                comandos.add(new ExecCmd(cmd));
-                comandos.get(comandos.size()-1).run();
-                //ex.run();
-            }else{// if(ex.terminado()){
+            if (!cmd.trim().isEmpty() && !cmd.equals("fim")) {
+                ExecCmd comando = new ExecCmd(cmd);
+                comando.executa();
+                comandos.add(comando);
+            }else{
                 int qntd = 0;
-                for(ExecCmd c : comandos){
+                for(ExecCmd c: comandos){
                     qntd += c.terminado() ? 0 : 1;
                 }
-                
                 System.out.println("Processo "+qntd+" em execução deseja terminar? (s/n)");
                 Scanner s = new Scanner(System.in);
                 String ss = s.next();
@@ -38,7 +41,23 @@ public class Pratica93 {
                     }
                 }
             }
+        }while(!fim);
+        
+        
+    private static boolean confirmaSaida() throws IOException {
+        int qntd = 0;
+            for(ExecCmd c: comandos){
+                qntd += c.terminado() ? 0 : 1;
+            }
+        String resp = "S";
+        if (qntd > 0) {
+            System.out.printf("Há %d processos em execução. Deseja terminá-los? ", qntd);
+            do {
+                resp = scanner.nextLine().toUpperCase();
+            } while (!resp.equals("S") && !resp.equals("N"));
         }
+        return "S".equals(resp);
+    }
         
     }
 }
