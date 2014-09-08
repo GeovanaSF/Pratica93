@@ -20,7 +20,7 @@ public class Pratica93 {
         String cmd;
         boolean fim = false;
         
-        do{
+        /*do{
             System.out.println("Entre comando: ");
             cmd = scanner.next();
             if (!cmd.trim().isEmpty() && !cmd.equals("fim")) {
@@ -32,11 +32,11 @@ public class Pratica93 {
                     c.cancela();
                 }
             }
-        }while(!fim);
+        }while(!fim);*/
         
     }
     
-    private static boolean confirmaSaida() throws IOException {
+    /*private static boolean confirmaSaida() throws IOException {
         int qntd = 0;
             for(ExecCmd c: comandos){
                 qntd += c.terminado() ? 0 : 1;
@@ -49,7 +49,7 @@ public class Pratica93 {
             } while (!resp.equals("S") && !resp.equals("N"));
         }
         return "S".equals(resp);
-    }
+    }*/
         
     
 }
