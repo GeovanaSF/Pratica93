@@ -102,11 +102,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
     private void btExeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExeActionPerformed
         // TODO add your handling code here:
-        if(txtCmd.getText() != ""){
             model.insertRow(model.getRowCount(), new Object[]{txtCmd.getText(),true});
-        }else{
-            JOptionPane.showMessageDialog(null, "Informe um valor valido.");
-        }
     }//GEN-LAST:event_btExeActionPerformed
 
     /**
