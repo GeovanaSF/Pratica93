@@ -128,14 +128,16 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         }else{
             
         }
-        
-        //model.insertRow(model.getRowCount(), new Object[]{txtCmd.getText(),true});
     }//GEN-LAST:event_btExeActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
         int linha = tabela.getSelectedRow();
+        
         Process processo = (Process) tabela.getValueAt(linha, 0);
+        int index = comandos.indexOf(processo);
+        ExecCmd exclui = comandos.get(index);
+        exclui.cancela();
         processo.destroy();
         tabela.setValueAt(false, linha, 1);
     }//GEN-LAST:event_tabelaMouseClicked
@@ -146,7 +148,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         if (nexec > 0) {
             int resposta = JOptionPane.showConfirmDialog(null,nexec + " processos ainda estão rodando, deseja finaliza-los?", "Finalizar", JOptionPane.YES_NO_OPTION);
             
-            if(resposta == 0){//sim = 0, nao = 1  
+            if(resposta == 0){//sim = 0, nao = 1
                 comandos.cancelaTudo();
             }
         }
