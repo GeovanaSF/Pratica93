@@ -44,6 +44,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         btExe = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        jExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -87,6 +88,13 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabela);
 
+        jExcluir.setText("Cancelar Comando");
+        jExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,6 +111,10 @@ public class InterfaceGrafica extends javax.swing.JFrame {
                         .addComponent(btExe)
                         .addGap(0, 40, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(218, 218, 218)
+                .addComponent(jExcluir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +124,11 @@ public class InterfaceGrafica extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtCmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btExe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jExcluir)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -132,11 +146,12 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         }else{
             
         }
+        txtCmd.setText(null);
     }//GEN-LAST:event_btExeActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
-        int linha = tabela.getSelectedRow();
+        /*int linha = tabela.getSelectedRow();
         
         Process processo = (Process) tabela.getValueAt(linha, 0);
         //int index = comandos.indexOf(processo);
@@ -144,7 +159,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         //exclui.cancela();
         processo.destroy();
         //comandos.remove(exclui);
-        tabela.setValueAt(false, linha, 1);
+        tabela.setValueAt(false, linha, 1);*/
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -162,8 +177,17 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        this.timer.schedule(new Verificador(comandos,model), 0, 1000);
+        this.timer.schedule(new Verificador(comandos,model), 0, 3000);
     }//GEN-LAST:event_formWindowOpened
+
+    private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
+        // TODO add your handling code here:
+        int linha = tabela.getSelectedRow();
+        
+        Process processo = (Process) tabela.getValueAt(linha, 0);
+        processo.destroy();
+        tabela.setValueAt(false, linha, 1);
+    }//GEN-LAST:event_jExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +226,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btExe;
+    private javax.swing.JButton jExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
