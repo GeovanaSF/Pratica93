@@ -50,6 +50,9 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         jLabel1.setText("Comandos");
@@ -125,7 +128,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             cmd.executa();
             comandos.add(cmd);
             model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
-            this.timer.schedule(new Verificador(comandos,model), 0, 1000);
+            
         }else{
             
         }
@@ -156,6 +159,11 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         }
         timer.cancel();
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        this.timer.schedule(new Verificador(comandos,model), 0, 1000);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
