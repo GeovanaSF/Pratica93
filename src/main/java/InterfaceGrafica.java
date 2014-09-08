@@ -145,9 +145,6 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             if(resposta == 0){//sim = 0, nao = 1  
                 comandos.cancelaTudo();
             }
-            //do {
-            //    resp = scn.nextLine().toUpperCase();
-            //} while (!resp.equals("S") && !resp.equals("N"));
         }
     }//GEN-LAST:event_formWindowClosing
 
