@@ -60,6 +60,7 @@ public class ExecCmd extends Thread{
         }
     }
     public boolean terminado(){
-        return terminado;
+        //return terminado;
+        return !proc.isAlive();
     }
 }

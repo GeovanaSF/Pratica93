@@ -24,8 +24,10 @@ public class Verificador extends TimerTask{
     
     @Override
     public void run(){
+        int i = 0;
         for(ExecCmd c: comandos.getExecutando()){
-            model.insertRow(model.getRowCount(), new Object[]{c.getProcesso(),true});
+            model.insertRow(i, new Object[]{c.getProcesso(),true});
+            i++;
         }
     }
 }

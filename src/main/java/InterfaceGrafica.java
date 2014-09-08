@@ -23,6 +23,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
      */
     private static final CmdList comandos = new CmdList();
     DefaultTableModel model;
+    Timer timer = new Timer("verificador");
+    
     public InterfaceGrafica() {
         initComponents();
         model = (DefaultTableModel)tabela.getModel();
@@ -123,8 +125,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             cmd.executa();
             comandos.add(cmd);
             model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
-            Timer timer = new Timer("verificador");
-            timer.schedule(new Verificador(comandos,model), System.currentTimeMillis(), 1000);
+            this.timer.schedule(new Verificador(comandos,model), 0, 1000);
         }else{
             
         }
@@ -135,10 +136,11 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         int linha = tabela.getSelectedRow();
         
         Process processo = (Process) tabela.getValueAt(linha, 0);
-        int index = comandos.indexOf(processo);
-        ExecCmd exclui = comandos.get(index);
-        exclui.cancela();
+        //int index = comandos.indexOf(processo);
+        //ExecCmd exclui = comandos.get(comandos.indexOf(processo));
+        //exclui.cancela();
         processo.destroy();
+        //comandos.remove(exclui);
         tabela.setValueAt(false, linha, 1);
     }//GEN-LAST:event_tabelaMouseClicked
 
@@ -152,6 +154,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
                 comandos.cancelaTudo();
             }
         }
+        timer.cancel();
     }//GEN-LAST:event_formWindowClosing
 
     /**
