@@ -30,10 +30,7 @@ public class ExecCmd extends Thread{
     @Override
     public void run(){
         try {
-            proc = Runtime.getRuntime().exec(cmd);
             proc.waitFor();
-        } catch (IOException ex) {
-            Logger.getLogger(ExecCmd.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(ExecCmd.class.getName()).log(Level.SEVERE, null, ex);
         }
