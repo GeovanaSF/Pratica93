@@ -1,6 +1,8 @@
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utfpr.ct.dainf.if62c.pratica.CmdList;
+import utfpr.ct.dainf.if62c.pratica.ExecCmd;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +19,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceGrafica
      */
+    private static final CmdList comandos = new CmdList();
     DefaultTableModel model;
     public InterfaceGrafica() {
         initComponents();
@@ -102,7 +105,17 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
     private void btExeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExeActionPerformed
         // TODO add your handling code here:
-            model.insertRow(model.getRowCount(), new Object[]{txtCmd.getText(),true});
+        
+        if(txtCmd.getText() != null){
+            ExecCmd cmd = new ExecCmd(txtCmd.getText());
+            cmd.executa();
+            comandos.add(cmd);
+            model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
+        }else{
+            
+        }
+        
+        //model.insertRow(model.getRowCount(), new Object[]{txtCmd.getText(),true});
     }//GEN-LAST:event_btExeActionPerformed
 
     /**

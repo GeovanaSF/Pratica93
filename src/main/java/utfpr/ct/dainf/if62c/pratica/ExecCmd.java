@@ -23,6 +23,10 @@ public class ExecCmd extends Thread{
         this.cmd = cmd;
     }
     
+    public Process getProcesso() {
+        return proc;
+    }
+    
     @Override
     public void run(){
         try {
@@ -38,9 +42,9 @@ public class ExecCmd extends Thread{
     
     public void executa() {
         try {
-            CapturaSaida captura = new CapturaSaida(proc.getInputStream(),System.out);
+            //CapturaSaida captura = new CapturaSaida(proc.getInputStream(),System.out);
             proc = Runtime.getRuntime().exec(cmd);
-            captura.start();
+            //captura.start();
         } catch (IOException | IllegalArgumentException ex) {
             System.out.printf("Comando '%s' não pode ser executado: %s%n",
                     cmd, ex.getLocalizedMessage());
