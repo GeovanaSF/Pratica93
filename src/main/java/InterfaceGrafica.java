@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -32,8 +33,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComando = new javax.swing.JTextField();
-        jExecuta = new javax.swing.JButton();
+        txtCmd = new javax.swing.JTextField();
+        btExe = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
 
@@ -41,10 +42,10 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
         jLabel1.setText("Comandos");
 
-        jExecuta.setText("Executar");
-        jExecuta.addActionListener(new java.awt.event.ActionListener() {
+        btExe.setText("Executar");
+        btExe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jExecutaActionPerformed(evt);
+                btExeActionPerformed(evt);
             }
         });
 
@@ -77,9 +78,9 @@ public class InterfaceGrafica extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComando, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCmd, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(jExecuta)
+                        .addComponent(btExe)
                         .addGap(0, 40, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -89,8 +90,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jExecuta))
+                    .addComponent(txtCmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExe))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
@@ -99,10 +100,14 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jExecutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExecutaActionPerformed
+    private void btExeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExeActionPerformed
         // TODO add your handling code here:
-        model.insertRow(model.getRowCount(), new Object[]{"oii",true});
-    }//GEN-LAST:event_jExecutaActionPerformed
+        if(txtCmd.getText() != ""){
+            model.insertRow(model.getRowCount(), new Object[]{txtCmd.getText(),true});
+        }else{
+            JOptionPane.showMessageDialog(null, "Informe um valor valido.");
+        }
+    }//GEN-LAST:event_btExeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,10 +145,10 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jComando;
-    private javax.swing.JButton jExecuta;
+    private javax.swing.JButton btExe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
+    private javax.swing.JTextField txtCmd;
     // End of variables declaration//GEN-END:variables
 }
