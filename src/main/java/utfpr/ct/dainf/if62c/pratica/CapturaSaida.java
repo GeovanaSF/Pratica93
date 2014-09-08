@@ -14,7 +14,7 @@ import java.io.PrintStream;
 
 /**
  *
- * @author Geovana
+ * @author Geovana,Pedro,Yasmin,Jessica
  */
 public class CapturaSaida extends Thread{
     private final InputStream is;

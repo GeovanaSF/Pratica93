@@ -14,13 +14,14 @@ import utfpr.ct.dainf.if62c.pratica.Verificador;
 
 /**
  *
- * @author Geovana
+ * @author Geovana,Pedro,Jessica,Yasmin
  */
 public class InterfaceGrafica extends javax.swing.JFrame {
 
     /**
      * Creates new form InterfaceGrafica
      */
+    
     private static final CmdList comandos = new CmdList();
     DefaultTableModel model;
     Timer timer = new Timer("verificador");

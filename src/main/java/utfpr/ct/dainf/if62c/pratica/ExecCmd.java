@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Geovana
+ * @author Geovana,Pedro,Jessica,Yasmin
  */
 public class ExecCmd extends Thread{
     private Process proc;

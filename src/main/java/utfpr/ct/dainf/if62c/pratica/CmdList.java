@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Pedro
+ * @author Pedro,Geovana,Jessica,Yasmin
  */
 public class CmdList extends ArrayList<ExecCmd> {
     

@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Geovana
+ * @author Geovana,Pedro,Jessica,Yasmin
  */
 public class Verificador extends TimerTask{
     private static CmdList comandos;
