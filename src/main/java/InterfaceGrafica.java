@@ -123,7 +123,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             cmd.executa();
             comandos.add(cmd);
             model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
-            Timer timer = new Timer("hora-cheia-timer");
+            Timer timer = new Timer("verificador");
             timer.schedule(new Verificador(comandos,model), System.currentTimeMillis(), 1000);
         }else{
             
