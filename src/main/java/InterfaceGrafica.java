@@ -68,6 +68,11 @@ public class InterfaceGrafica extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,6 +122,14 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         
         //model.insertRow(model.getRowCount(), new Object[]{txtCmd.getText(),true});
     }//GEN-LAST:event_btExeActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        // TODO add your handling code here:
+        int linha = tabela.getSelectedRow();
+        Process processo = (Process) tabela.getValueAt(linha, 0);
+        processo.destroy();
+        tabela.setValueAt(false, linha, 1);
+    }//GEN-LAST:event_tabelaMouseClicked
 
     /**
      * @param args the command line arguments
