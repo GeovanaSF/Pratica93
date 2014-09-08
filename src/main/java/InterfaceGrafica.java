@@ -42,6 +42,11 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Comandos");
 
@@ -130,6 +135,21 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         processo.destroy();
         tabela.setValueAt(false, linha, 1);
     }//GEN-LAST:event_tabelaMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        int nexec = comandos.numExecutando();
+        if (nexec > 0) {
+            int resposta = JOptionPane.showConfirmDialog(null,nexec + " processos ainda estão rodando, deseja finaliza-los?", "Finalizar", JOptionPane.YES_NO_OPTION);
+            
+            if(resposta == 0){//sim = 0, nao = 1  
+                comandos.cancelaTudo();
+            }
+            //do {
+            //    resp = scn.nextLine().toUpperCase();
+            //} while (!resp.equals("S") && !resp.equals("N"));
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
