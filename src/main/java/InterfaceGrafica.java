@@ -1,8 +1,10 @@
 
+import java.util.Timer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utfpr.ct.dainf.if62c.pratica.CmdList;
 import utfpr.ct.dainf.if62c.pratica.ExecCmd;
+import utfpr.ct.dainf.if62c.pratica.Verificador;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -121,6 +123,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             cmd.executa();
             comandos.add(cmd);
             model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
+            Timer timer = new Timer("hora-cheia-timer");
+            timer.schedule(new Verificador(comandos,model), System.currentTimeMillis(), 1000);
         }else{
             
         }
