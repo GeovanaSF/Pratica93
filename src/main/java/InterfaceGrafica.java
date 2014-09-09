@@ -144,8 +144,6 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             comandos.add(cmd);
             model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
             
-        }else{
-            
         }
         txtCmd.setText(null);
     }//GEN-LAST:event_btExeActionPerformed
@@ -153,13 +151,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
         /*int linha = tabela.getSelectedRow();
-        
         Process processo = (Process) tabela.getValueAt(linha, 0);
-        //int index = comandos.indexOf(processo);
-        //ExecCmd exclui = comandos.get(comandos.indexOf(processo));
-        //exclui.cancela();
         processo.destroy();
-        //comandos.remove(exclui);
         tabela.setValueAt(false, linha, 1);*/
     }//GEN-LAST:event_tabelaMouseClicked
 
