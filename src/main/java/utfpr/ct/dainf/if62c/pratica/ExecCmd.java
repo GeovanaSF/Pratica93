@@ -21,6 +21,10 @@ public class ExecCmd extends Thread{
     public ExecCmd(String cmd){
         this.cmd = cmd;
     }
+
+    public String getCmd() {
+        return cmd;
+    }
     
     public Process getProcesso() {
         return proc;

@@ -28,7 +28,7 @@ public class Verificador extends TimerTask{
         model.setNumRows(0);
         for(ExecCmd c: comandos.getExecutando()){
             
-            model.insertRow(i, new Object[]{c.getProcesso(),true});
+            model.insertRow(i, new Object[]{c.getProcesso(),c.getCmd(),true});
             i++;
         }
     }

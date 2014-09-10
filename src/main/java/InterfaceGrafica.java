@@ -71,11 +71,11 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Processo", "Status"
+                "Processo", "Comando", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -142,7 +142,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             ExecCmd cmd = new ExecCmd(txtCmd.getText());
             cmd.executa();
             comandos.add(cmd);
-            model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),true});
+            model.insertRow(model.getRowCount(), new Object[]{cmd.getProcesso(),cmd.getCmd(),true});
             
         }
         txtCmd.setText(null);
@@ -180,7 +180,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         
         Process processo = (Process) tabela.getValueAt(linha, 0);
         processo.destroy();
-        tabela.setValueAt(false, linha, 1);
+        tabela.setValueAt(false, linha, 2);
     }//GEN-LAST:event_jExcluirActionPerformed
 
     /**
